@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maheswaran S - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #05000a;
+            --sidebar-bg: #0a0014;
+            --text-color: #ffffff;
+            --primary-color: #b026ff;
+            --secondary-color: #7000ff;
+            --card-bg: #10051c;
+            --border-color: #2a0a4a;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --shadow: 0 10px 30px rgba(176, 38, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ----- LEFT SIDEBAR (30%) ----- */
+        .sidebar {
+            width: 30%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 0 20px rgba(176, 38, 255, 0.4);
+            margin-bottom: 30px;
+            object-fit: cover;
+            background-color: var(--card-bg);
+        }
+
+        .sidebar-info {
+            text-align: center;
+            width: 100%;
+        }
+
+        .sidebar-info h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 12px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            font-size: 15px;
+            color: #ddd;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+        }
+
+        .info-item i {
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0 25px 0;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ddd;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(176, 38, 255, 0.2);
+        }
+
+        /* ----- RIGHT MAIN CONTENT (70%) ----- */
+        .main-content {
+            width: 70%;
+            margin-left: 30%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(5, 0, 10, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 50px 20px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2.section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Content Blocks Placeholder Styles */
+        .content-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .neon-text {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(176, 38, 255, 0.4);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .cert-card {
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(176, 38, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(176, 38, 255, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 30px;
+            }
+            .main-content {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+        <img src="photo.jpeg" alt="Profile" class="profile-img" onerror="this.src='https://via.placeholder.com/180x180/10051c/b026ff?text=Photo'">
+        
+        <div class="sidebar-info">
+            <h2>Maheswaran S</h2>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/maheswaran-s-5586a53b6/" target="_blank" class="social-icon" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.codechef.com/users/maheshcc" target="_blank" class="social-icon" title="CodeChef">
+                    <i class="fas fa-code"></i>
+                </a>
+            </div>
+
+            <!-- Email -->
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <span id="email-placeholder">717825f229@kce.ac.in</span>
+            </div>
+            
+            <!-- Phone -->
+            <div class="info-item">
+                <i class="fas fa-phone-alt"></i>
+                <span id="phone-placeholder">+91 9597986609</span>
+            </div>
+            
+            <!-- College -->
+            <div class="info-item">
+                <i class="fas fa-university"></i>
+                <span id="college-placeholder">Karpagam College of Engineering, Coimbatore, India</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Main Content -->
+    <div class="main-content">
+        <!-- Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </nav>
+
+        <!-- Home Section -->
+        <section id="home">
+            <h2 class="section-title">Home</h2>
+            <div class="content-box">
+                <h3 class="neon-text" style="font-size: 24px; margin-bottom: 20px;">About Me</h3>
+                <p style="opacity: 0.8; line-height: 1.8;">
+                    I am a tech enthusiast currently pursuing B.Tech in Information Technology at Karpagam College of Engineering. I enjoy working on projects, exploring new technologies, and continuously improving my skills. I am passionate about problem-solving and building practical solutions. I am always eager to learn, grow, and stay updated with the latest trends in the IT field.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="content-box">
+                <!-- Skills list -->
+                <div style="display: flex; flex-direction: column; gap: 30px;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-size: 18px; font-weight: 500;">C</span>
+                            <span class="neon-text" style="font-size: 18px; font-weight: 600;">60%</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: var(--sidebar-bg); border-radius: 6px; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
+                            <div style="width: 60%; height: 100%; background: var(--gradient); border-radius: 6px;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-size: 18px; font-weight: 500;">C++</span>
+                            <span class="neon-text" style="font-size: 18px; font-weight: 600;">55%</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: var(--sidebar-bg); border-radius: 6px; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
+                            <div style="width: 55%; height: 100%; background: var(--gradient); border-radius: 6px;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-size: 18px; font-weight: 500;">HTML</span>
+                            <span class="neon-text" style="font-size: 18px; font-weight: 600;">65%</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: var(--sidebar-bg); border-radius: 6px; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
+                            <div style="width: 65%; height: 100%; background: var(--gradient); border-radius: 6px;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-size: 18px; font-weight: 500;">CSS</span>
+                            <span class="neon-text" style="font-size: 18px; font-weight: 600;">60%</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: var(--sidebar-bg); border-radius: 6px; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
+                            <div style="width: 60%; height: 100%; background: var(--gradient); border-radius: 6px;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-size: 18px; font-weight: 500;">JavaScript</span>
+                            <span class="neon-text" style="font-size: 18px; font-weight: 600;">50%</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: var(--sidebar-bg); border-radius: 6px; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
+                            <div style="width: 50%; height: 100%; background: var(--gradient); border-radius: 6px;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-size: 18px; font-weight: 500;">Python</span>
+                            <span class="neon-text" style="font-size: 18px; font-weight: 600;">50%</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: var(--sidebar-bg); border-radius: 6px; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
+                            <div style="width: 50%; height: 100%; background: var(--gradient); border-radius: 6px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates">
+            <h2 class="section-title">Certificates</h2>
+            <div class="cert-grid">
+                <!-- Certificate Card -->
+                <div class="cert-card" style="padding: 15px;">
+                    <embed src="c1.pdf" type="application/pdf" width="100%" height="200px" style="border-radius: 8px; margin-bottom: 15px;" />
+                    <h3 style="margin-bottom: 10px;">Certificate of Completion</h3>
+                    <p style="font-size: 14px; opacity: 0.7; margin-bottom: 15px;">My latest certification.</p>
+                    <a href="c1.pdf" target="_blank" class="btn"><i class="fas fa-external-link-alt"></i> Open Certificate</a>
+                </div>
+
+                <!-- Document Card -->
+                <div class="cert-card" style="padding: 15px;">
+                    <img src="ss.pdf.png" alt="Document Showcase" style="width: 100%; height: 200px; object-fit: contain; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 15px;" />
+                    <h3 style="margin-bottom: 10px;">Document</h3>
+                    <p style="font-size: 14px; opacity: 0.7; margin-bottom: 15px;">Additional achievement representation.</p>
+                    <a href="ss.pdf.png" target="_blank" class="btn"><i class="fas fa-eye"></i> View</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <h2 class="section-title">Academics</h2>
+            <div class="content-box">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="background: var(--sidebar-bg); padding: 25px 40px; border-radius: 10px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <p style="font-weight: 600; font-size: 20px;">10th Standard</p>
+                        <h3 class="neon-text" style="font-size: 28px; margin: 0;">92.8%</h3>
+                    </div>
+                    <div style="background: var(--sidebar-bg); padding: 25px 40px; border-radius: 10px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <div>
+                            <p style="font-weight: 600; font-size: 20px;">12th Standard</p>
+                            <p style="font-size: 14px; color: var(--primary-color); margin-top: 5px;">(100/100 in Computer Science)</p>
+                        </div>
+                        <h3 class="neon-text" style="font-size: 28px; margin: 0;">94.3%</h3>
+                    </div>
+                    <div style="background: var(--sidebar-bg); padding: 25px 40px; border-radius: 10px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <div>
+                            <p style="font-weight: 600; font-size: 20px;">B.Tech Information Technology</p>
+                        </div>
+                        <h3 class="neon-text" style="font-size: 24px; margin: 0;">Pursuing</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="cert-grid">
+                <!-- Project 1 -->
+                <div class="cert-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <i class="fas fa-network-wired" style="font-size: 40px; color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <h3 style="margin-bottom: 10px;">AI Sentiment Analysis</h3>
+                    <p style="font-size: 14px; opacity: 0.7; margin-bottom: 10px;">Implemented using Data Structures concepts to efficiently parse and analyze textual data sentiment.</p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="cert-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <i class="fas fa-calculator" style="font-size: 40px; color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <h3 style="margin-bottom: 10px;">Simple Calculator Website</h3>
+                    <p style="font-size: 14px; opacity: 0.7; margin-bottom: 10px;">A fully functional, responsive calculator application built completely from scratch using HTML, CSS, and Vanilla JavaScript.</p>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="cert-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <i class="fas fa-wpforms" style="font-size: 40px; color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <h3 style="margin-bottom: 10px;">Registration Form Layout</h3>
+                    <p style="font-size: 14px; opacity: 0.7; margin-bottom: 10px;">A clean, responsive, and structured registration form layout emphasizing UI/UX best practices.</p>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="cert-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <i class="fas fa-bus" style="font-size: 40px; color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <h3 style="margin-bottom: 10px;">Bus Ticket Management</h3>
+                    <p style="font-size: 14px; opacity: 0.7; margin-bottom: 10px;">A management system for scheduling and ticketing, incorporating interactive design elements.</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer style="text-align: center; padding: 20px; border-top: 1px solid var(--border-color); opacity: 0.6; font-size: 14px;">
+            &copy; 2026 Maheswaran S. Designed with <span style="color: var(--primary-color);">&hearts;</span>
+        </footer>
+    </div>
+
+</body>
+</html>
